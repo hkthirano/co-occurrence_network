@@ -36,14 +36,13 @@ calc_sparcc <- function( params_i, iter ){
     sampling <- params_i[, "sampling"]
     file_name <- params_i[, "file.name"]
 
+    # sparccを計算するコマンドを作成
+    arg_2 <- L("../../data/", network, "/", interact, "/iter-", iter, "/count/", file_name)
+    arg_3 <- L("--cor_file=../../data/", network, "/", interact, "/iter-", iter, "/pred/sparcc/", file_name)
+    cmd = L(python, " ", arg_1, " ", arg_2, " ", arg_3)
 
     tryCatch({
-        # sparccを計算して相関行列を保存
-        arg_2 <- L("../../data/", network, "/", interact, "/iter-", iter, "/count/", file_name)
-        arg_3 <- L("--cor_file=../../data/", network, "/", interact, "/iter-", iter, "/pred/sparcc/", file_name)
-
-        cmd = L(python, " ", arg_1, " ", arg_2, " ", arg_3)
-        # 実際にシェルからプログラム実行
+        # 実際にシェルからsparccを実行　＆ 相関行列を保存
         # 計算できなくてもtryCatchには引っかからない
         system(cmd)
 
