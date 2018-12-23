@@ -1,5 +1,5 @@
 #iter_num=$1
-iter_num=30
+iter_num=2
 rm -rf data
 
 for iter in `seq 1 $iter_num`

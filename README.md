@@ -75,14 +75,14 @@ sh mkdir.sh
 Rscript main.R | tee out-res/main.log  
 相関分析。
 
-python mapping-save-data.py count-pea | tee out-res/mapping.log  
-python mapping-save-data.py count-spe | tee out-res/mapping.log  
-python mapping-save-data.py count-ppea | tee out-res/mapping.log  
-python mapping-save-data.py count-pspe | tee out-res/mapping.log  
-python mapping-save-data.py flac-pea | tee out-res/mapping.log  
-python mapping-save-data.py flac-spe | tee out-res/mapping.log  
-python mapping-save-data.py flac-ppea | tee out-res/mapping.log  
-python mapping-save-data.py flac-pspe | tee out-res/mapping.log  
+python mapping-save-data.py count-pea | tee out-res/mapping-count-pea.log  
+python mapping-save-data.py count-spe | tee out-res/mapping-count-spe.log  
+python mapping-save-data.py count-ppea | tee out-res/mapping-count-ppea.log  
+python mapping-save-data.py count-pspe | tee out-res/mapping-count-pspe.log  
+python mapping-save-data.py flac-pea | tee out-res/mapping-flac-pea.log  
+python mapping-save-data.py flac-spe | tee out-res/mapping-flac-spe.log  
+python mapping-save-data.py flac-ppea | tee out-res/mapping-flac-ppea.log  
+python mapping-save-data.py flac-pspe | tee out-res/mapping-flac-pspe.log  
 相関分析結果csvファイルの作成。
 
 ## sparcc
