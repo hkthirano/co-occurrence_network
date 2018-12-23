@@ -12,16 +12,16 @@ j_data = json.load(json_path)
 
 iter_num = j_data['iter-num']
 
-# 保存用ファイルを読み込んでmicだけを抽出する
-df = pd.read_csv(j_data['params-for-res-csv'])
-df_save = df[(df['calc-method'] == 'count-mic') | (df['calc-method'] == 'flac-mic')]
-
-# 基準paramsの読み込み
-params = pd.read_csv(j_data['params-all-csv'])
-
 # メソッド種類
 args = sys.argv
 method = args[1]
+
+# 保存用ファイルを読み込んでmicだけを抽出する
+df = pd.read_csv(j_data['params-for-res-csv'])
+df_save = df[df['calc-method'] == method]
+
+# 基準paramsの読み込み
+params = pd.read_csv(j_data['params-all-csv'])
 
 
 
