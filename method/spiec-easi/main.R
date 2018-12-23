@@ -51,8 +51,6 @@ calc_spiec_easi <- function( params_i, iter ){
         # 対角要素を０に
         diag(network_pred) <- 0
 
-        print(network_pred[1:5, 1:5])
-
         # only use elements in lower triangular matrix
         pred <- network_pred[lower.tri(network_pred)]
 
