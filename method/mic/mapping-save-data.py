@@ -2,6 +2,7 @@ import json
 import itertools
 import pandas as pd
 import numpy as np
+import sys
 
 
 
@@ -18,36 +19,27 @@ df_save = df[(df['calc-method'] == 'count-mic') | (df['calc-method'] == 'flac-mi
 # 基準paramsの読み込み
 params = pd.read_csv(j_data['params-all-csv'])
 
+# メソッド種類
+args = sys.argv
+method = args[1]
+
+
+
 # paramsに従って、１行ずつaucをマッピングしていく
 for i in range(len(params)):
     id = params.iloc[i]['id']
 
     for iter in range(1, iter_num + 1):
-        # count
-        auc_file_count = 'out-res/iter-{}/id-{}-count.txt'.format(iter, id)
+        auc_file = 'out-res/iter-{}/id-{}-{}.txt'.format(iter, id, method)
+
         try:
-            auc_count = np.loadtxt(auc_file_count)
+            auc = np.loadtxt(auc_file)
 
-            df_save.loc[(df_save['id'] == id) & (df_save['calc-method'] == 'count-mic') & (df_save['auc-type'] == 'roc'), 'iter-{}'.format(iter)] = auc_count[0]
+            df_save.loc[(df_save['id'] == id) & (df_save['calc-method'] == method) & (df_save['auc-type'] == 'roc'), 'iter-{}'.format(iter)] = auc[0]
 
-            df_save.loc[(df_save['id'] == id) & (df_save['calc-method'] == 'count-mic') & (df_save['auc-type'] == 'prc'), 'iter-{}'.format(iter)] = auc_count[1]
+            df_save.loc[(df_save['id'] == id) & (df_save['calc-method'] == method) & (df_save['auc-type'] == 'prc'), 'iter-{}'.format(iter)] = auc[1]
         except:
-            print('\n\n', auc_file_count, ' ない\n\n')
-
-        # flac
-        auc_file_flac = 'out-res/iter-{}/id-{}-flac.txt'.format(iter, id)
-        try:
-            auc_flac = np.loadtxt(auc_file_flac)
-
-            df_save.loc[(df_save['id'] == id) & (df_save['calc-method'] == 'flac-mic') & (df_save['auc-type'] == 'roc'), 'iter-{}'.format(iter)] = auc_flac[0]
-
-            df_save.loc[(df_save['id'] == id) & (df_save['calc-method'] == 'flac-mic') & (df_save['auc-type'] == 'prc'), 'iter-{}'.format(iter)] = auc_flac[1]
-        except:
-            print('\n\n', auc_file_flac, ' ない\n\n')
-
+            print('\n\n', auc_file, ' ない\n\n')
 
 # 保存
-df_save.to_csv('res-mic.csv', index=False)
-        
-
-
+df_save.to_csv('res-{}.csv'.format(method), index=False)

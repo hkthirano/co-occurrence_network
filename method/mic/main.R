@@ -57,7 +57,7 @@ calc_mic <- function( params_i, iter ){
         prc_count <- pr.curve(pred_count[real == 1],pred_count[real == 0])$auc.integral
 
         #iter毎のaucを保存
-        file_name_count <- L("out-res/iter-", iter, "/id-", id, "-count.txt")
+        file_name_count <- L("out-res/iter-", iter, "/id-", id, "-count-mic.txt")
         cat(roc_count, prc_count, "\n", file=file_name_count)
          
         cat("\n\n[count] id -", id, "は計算できた！\n\n")
@@ -92,7 +92,7 @@ calc_mic <- function( params_i, iter ){
         prc_flac <- pr.curve(pred_flac[real == 1],pred_flac[real == 0])$auc.integral
 
         #iter毎のaucを保存
-        file_name_flac <- L("out-res/iter-", iter, "/id-", id, "-flac.txt")
+        file_name_flac <- L("out-res/iter-", iter, "/id-", id, "-flac-mic.txt")
         cat(roc_flac, prc_flac, "\n", file=file_name_flac)
          
         cat("\n\n[flac] id -", id, "は計算できた！\n\n")
