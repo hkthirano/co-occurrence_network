@@ -3,7 +3,7 @@
 params.jsonのパラメタリストを編集する。  
 k_aveは偶数になるように！
 
-sh bin/make-dir.sh  
+`sh bin/make-dir.sh`
 保存用ディレクトリを作成する(デフォルト30iter)。
 
 mkdir resource/tmp  
