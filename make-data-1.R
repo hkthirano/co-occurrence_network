@@ -32,11 +32,12 @@ make_data <- function( params_i, iter ){
     k_ave <- params_i[, "k.ave"]
     s_max <- params_i[, "s.max"]
     sampling <- params_i[, "sampling"]
+    ratio <- params_i[, "ratio"] / 10
 
     # メイン
     tryCatch({
         ## Genrate matrices
-        obj <- generateA_specific_type(nn, k_ave, type.network=network, type.interact=interact, interact.str.max=s_max)
+        obj <- generateA_specific_type(nn, k_ave, type.network=network, type.interact=interact, interact.str.max=s_max, mix.compt.ratio=ratio)
 
         # interaction matrix for gLV model
         A <- obj[[2]]

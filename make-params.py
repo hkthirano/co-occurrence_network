@@ -15,16 +15,17 @@ params_conbination = itertools.product(
                                        params['s-max'],
                                        params['nn'],
                                        params['k-ave'],
-                                       params['sampling'])
+                                       params['sampling'],
+                                       params['ratio'])
 
-params_conbination = pd.DataFrame( list(params_conbination) ,columns=['network', 'interact', 's-max', 'nn', 'k-ave', 'sampling'] )
+params_conbination = pd.DataFrame( list(params_conbination) ,columns=['network', 'interact', 's-max', 'nn', 'k-ave', 'sampling', 'ratio'] )
 
 # id列追加
 id_list = [ id+1 for id in range(0, len(params_conbination.index)) ]
 params_conbination['id'] = id_list
 
 # 列入れ替え
-col_list = ['id', 'network', 'interact', 's-max', 'nn', 'k-ave', 'sampling']
+col_list = ['id', 'network', 'interact', 's-max', 'nn', 'k-ave', 'sampling', 'ratio']
 params_conbination = params_conbination.ix[:, col_list]
 
 # ファイル名列追加
