@@ -64,44 +64,44 @@ calc_general <- function( params_i, iter ){
         # === count ===
 
         # @@@@@@@@@@ 1 count-pea @@@@@@@@@@
-        tryCatch({
-            network_pred <- abs(cor(t(count_data)))
-            calc_cat_auc(network_pred, real, id, iter, "count-pea")
-        },
-        error = function(e) {
-            cat("\n\nid -", id, " | 1 count-pea は計算できなかった！\n\n")
-            err <- 1
-        })
+        #tryCatch({
+        #    network_pred <- abs(cor(t(count_data)))
+        #    calc_cat_auc(network_pred, real, id, iter, "count-pea")
+        #},
+        #error = function(e) {
+        #    cat("\n\nid -", id, " | 1 count-pea は計算できなかった！\n\n")
+        #    err <- 1
+        #})
 
         # @@@@@@@@@@ 2 count-spe @@@@@@@@@@
-        tryCatch({
-            network_pred <- abs(cor(t(count_data),m="s"))
-            calc_cat_auc(network_pred, real, id, iter, "count-spe")
-        },
-        error = function(e) {
-            cat("\n\nid -", id, " | 2 count-spe は計算できなかった！\n\n")
-            err <- 1
-        })
+        #tryCatch({
+        #    network_pred <- abs(cor(t(count_data),m="s"))
+        #    calc_cat_auc(network_pred, real, id, iter, "count-spe")
+        #},
+        #error = function(e) {
+        #    cat("\n\nid -", id, " | 2 count-spe は計算できなかった！\n\n")
+        #    err <- 1
+        #})
 
         # @@@@@@@@@@ 3 count-ppea @@@@@@@@@@
-        tryCatch({
-            network_pred <- abs(pcor(t(count_data))$estimate)
-            calc_cat_auc(network_pred, real, id, iter, "count-ppea")
-        },
-        error = function(e) {
-            cat("\n\nid -", id, " | 3 count-ppea は計算できなかった！\n\n")
-            err <- 1
-        })
+        #tryCatch({
+        #    network_pred <- abs(pcor(t(count_data))$estimate)
+        #    calc_cat_auc(network_pred, real, id, iter, "count-ppea")
+        #},
+        #error = function(e) {
+        #    cat("\n\nid -", id, " | 3 count-ppea は計算できなかった！\n\n")
+        #    err <- 1
+        #})
 
         # @@@@@@@@@@ 4 count-pspe @@@@@@@@@@
-        tryCatch({
-            network_pred <- abs(pcor(t(count_data),m="s")$estimate)
-            calc_cat_auc(network_pred, real, id, iter, "count-pspe")
-        },
-        error = function(e) {
-            cat("\n\nid -", id, " | 4 count-pspe は計算できなかった！\n\n")
-            err <- 1
-        })
+        #tryCatch({
+        #    network_pred <- abs(pcor(t(count_data),m="s")$estimate)
+        #    calc_cat_auc(network_pred, real, id, iter, "count-pspe")
+        #},
+        #error = function(e) {
+        #    cat("\n\nid -", id, " | 4 count-pspe は計算できなかった！\n\n")
+        #    err <- 1
+        #})
 
         # @@@@@@@@@@ 5 flac-pea @@@@@@@@@@
         tryCatch({
@@ -114,14 +114,14 @@ calc_general <- function( params_i, iter ){
         })
 
         # @@@@@@@@@@ 6 flac-spe @@@@@@@@@@
-        tryCatch({
-            network_pred <- abs(cor(t(flac_data),m="s"))
-            calc_cat_auc(network_pred, real, id, iter, "flac-spe")
-        },
-        error = function(e) {
-            cat("\n\nid -", id, " | 6 flac-spe は計算できなかった！\n\n")
-            err <- 1
-        })
+        #tryCatch({
+        #    network_pred <- abs(cor(t(flac_data),m="s"))
+        #    calc_cat_auc(network_pred, real, id, iter, "flac-spe")
+        #},
+        #error = function(e) {
+        #    cat("\n\nid -", id, " | 6 flac-spe は計算できなかった！\n\n")
+        #    err <- 1
+        #})
 
         # @@@@@@@@@@ 7 flac-ppea @@@@@@@@@@
         tryCatch({
@@ -133,14 +133,14 @@ calc_general <- function( params_i, iter ){
         })
 
         # @@@@@@@@@@ 8 flac-pspe @@@@@@@@@@
-        tryCatch({
-            network_pred <- abs(pcor(t(flac_data),m="s")$estimate)
-            calc_cat_auc(network_pred, real, id, iter, "flac-pspe")
-        },
-        error = function(e) {
-            cat("\n\nid -", id, " | 8 flac-pspe は計算できなかった！\n\n")
-            err <- 1
-        })
+        #tryCatch({
+        #    network_pred <- abs(pcor(t(flac_data),m="s")$estimate)
+        #    calc_cat_auc(network_pred, real, id, iter, "flac-pspe")
+        #},
+        #error = function(e) {
+        #    cat("\n\nid -", id, " | 8 flac-pspe は計算できなかった！\n\n")
+        #    err <- 1
+        #})
 
         # ８手法のどれかでエラーが起きたとき
         if (err == 1){

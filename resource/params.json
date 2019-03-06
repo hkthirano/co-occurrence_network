@@ -1,0 +1,19 @@
+{   
+    "iter-num":2,
+    "params-all-csv":"/Users/hirano/Sites/new-main/resource/params-all.csv",
+    "params-max-sampling-csv":"/Users/hirano/Sites/new-main/resource/tmp/params-max-sampling.csv",
+    "params-for-res-csv":"/Users/hirano/Sites/new-main/resource/params-for-res.csv",
+
+    "network":["random"],
+    "interact":["mix2"],
+    "s-max":[0.5],
+    "nn":[50],
+    "k-ave":[8, 2],
+    "sampling":[300],
+    "ratio":[5, 9],
+    
+    "calc-method":["flac-pea", "flac-ppea", "spiec-easi", "cclasso"],
+
+    "res-type":["roc-mean", "prc-mean", "roc-sd", "prc-sd"],
+    "auc-type":["roc", "prc"]
+}

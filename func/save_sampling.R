@@ -9,6 +9,7 @@ save_sampling <- function(count_data, obj, params_i, iter){
     k_ave <- params_i[, "k.ave"]
     s_max <- params_i[, "s.max"]
     sampling <- params_i[, "sampling"]
+    ratio <- params_i[, "ratio"]
     file_name <- params_i[, "file.name"]
 
     # network real
@@ -17,17 +18,17 @@ save_sampling <- function(count_data, obj, params_i, iter){
     A <- obj[[2]]
 
     # network real保存
-    real_dir <- L("data/",network,"/",interact,"/iter-",iter,"/real/",file_name)
+    real_dir <- L("data/",network,"/",interact,"/ratio-",ratio,"/iter-",iter,"/real/",file_name)
     #cat("保存先",real_dir,"\n")
     write.table(network_real, real_dir, quote=F, sep="\t", row.names=F, col.names=F)
 
     # A保存
-    A_dir <- L("data/",network,"/",interact,"/iter-",iter,"/A/",file_name)
+    A_dir <- L("data/",network,"/",interact,"/ratio-",ratio,"/iter-",iter,"/A/",file_name)
     #cat("保存先",A_dir,"\n")
     write.table(A, A_dir, quote=F, sep="\t", row.names=F, col.names=F)
 
     # countデータ保存
-    count_dir <- L("data/",network,"/",interact,"/iter-",iter,"/count/",file_name)
+    count_dir <- L("data/",network,"/",interact,"/ratio-",ratio,"/iter-",iter,"/count/",file_name)
     #cat("保存先",count_dir,"\n")
     write.table(count_data, count_dir, quote=F, sep="\t",row.names=T)
 }    

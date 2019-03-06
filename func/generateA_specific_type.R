@@ -1,4 +1,4 @@
-generateA_specific_type <- function(nn,k_ave,type.network="random",type.interact="random",interact.str.max=0.5){
+generateA_specific_type <- function(nn,k_ave,type.network="random",type.interact="random",interact.str.max=0.5,mix.compt.ratio=0.5){
   # @param nn number of nodes
   # @param k_ave average degree (number of edges per node)
   # @param type.network network structure
@@ -12,7 +12,9 @@ generateA_specific_type <- function(nn,k_ave,type.network="random",type.interact
   #                compt: competition (-/- interaction)
   #                   pp: predator-prey (+/- interaction)
   #                  mix: mixture of mutualism and competition
+  #                 mix2: mixture of competitive and antagonistic interactions
   # @param interact.str.max maximum interaction strength
+  # @param mix.compt.ratio the ratio of competitive interactions to all intereactions (this parameter is only used for type.interact="mix" or ="mix2")
 
   # number of links
   nl <- round(k_ave * nn / 2)
@@ -40,7 +42,6 @@ generateA_specific_type <- function(nn,k_ave,type.network="random",type.interact
     for(i in 1:nl){
       A[edgelist[i,1],edgelist[i,2]] <- runif(1,min=-interact.str.max,max=interact.str.max)
       A[edgelist[i,2],edgelist[i,1]] <- runif(1,min=-interact.str.max,max=interact.str.max)
-
     }
   } else if(type.interact == "mutual") {
     for(i in 1:nl){
@@ -54,17 +55,37 @@ generateA_specific_type <- function(nn,k_ave,type.network="random",type.interact
     }
   } else if(type.interact == "pp") {
     for(i in 1:nl){
-      A[edgelist[i,1],edgelist[i,2]] <- runif(1,max=interact.str.max)
-      A[edgelist[i,2],edgelist[i,1]] <- -runif(1,max=interact.str.max)
+      if(runif(1) < 0.5){
+        A[edgelist[i,1],edgelist[i,2]] <- runif(1,max=interact.str.max)
+        A[edgelist[i,2],edgelist[i,1]] <- -runif(1,max=interact.str.max)
+      } else {
+        A[edgelist[i,1],edgelist[i,2]] <- -runif(1,max=interact.str.max)
+        A[edgelist[i,2],edgelist[i,1]] <- runif(1,max=interact.str.max)
+      }
     }
   } else if(type.interact == "mix") {
     for(i in 1:nl){
-      if(runif(1) < 0.5){
-        A[edgelist[i,1],edgelist[i,2]] <- runif(1,max=interact.str.max)
-        A[edgelist[i,2],edgelist[i,1]] <- runif(1,max=interact.str.max)
-      } else {
+      if(runif(1) < mix.compt.ratio){
         A[edgelist[i,1],edgelist[i,2]] <- -runif(1,max=interact.str.max)
         A[edgelist[i,2],edgelist[i,1]] <- -runif(1,max=interact.str.max)
+      } else {
+        A[edgelist[i,1],edgelist[i,2]] <- runif(1,max=interact.str.max)
+        A[edgelist[i,2],edgelist[i,1]] <- runif(1,max=interact.str.max)
+      }
+    }
+  } else if(type.interact == "mix2"){
+    for(i in 1:nl){
+      if(runif(1) < mix.compt.ratio){
+        A[edgelist[i,1],edgelist[i,2]] <- -runif(1,max=interact.str.max)
+        A[edgelist[i,2],edgelist[i,1]] <- -runif(1,max=interact.str.max)
+      } else {
+        if(runif(1) < 0.5){
+          A[edgelist[i,1],edgelist[i,2]] <- runif(1,max=interact.str.max)
+          A[edgelist[i,2],edgelist[i,1]] <- -runif(1,max=interact.str.max)
+        } else {
+          A[edgelist[i,1],edgelist[i,2]] <- -runif(1,max=interact.str.max)
+          A[edgelist[i,2],edgelist[i,1]] <- runif(1,max=interact.str.max)
+        }
       }
     }
   } else {
