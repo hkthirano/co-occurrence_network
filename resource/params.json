@@ -5,14 +5,15 @@
     "params-for-res-csv":"/Users/hirano/Sites/new-main/resource/params-for-res.csv",
 
     "network":["random"],
-    "interact":["mix2"],
+    "interact":["random"],
     "s-max":[0.5],
-    "nn":[50, 100],
-    "k-ave":[8, 2],
+    "nn":[50],
+    "k-ave":[2],
     "sampling":[300],
-    "ratio":[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    "mode":[3, 5, 6, 7],
     
-    "calc-method":["flac-pea", "flac-ppea", "spiec-easi", "cclasso"],
+    "calc-method":["flac-pea", "flac-spe", "flac-ppea", "flac-pspe", "flac-mic",
+                "sparcc", "rebacca", "spiec-easi", "cclasso"],
 
     "res-type":["roc-mean", "prc-mean", "roc-sd", "prc-sd"],
     "auc-type":["roc", "prc"]

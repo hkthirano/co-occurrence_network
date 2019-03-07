@@ -4,21 +4,21 @@ rm -rf data
 
 for iter in `seq 1 $iter_num`
 do
-    for ratio in 0 1 2 3 4 5 6 7 8 9 10
+    for mode in 3 5 6 7
     do
         for network in random
         do
-            for interact in mix2
+            for interact in random
             do
                 for dir in A real count pred #frac
                 do
 
-                    mkdir -p data/$network/$interact/ratio-$ratio/iter-$iter/$dir
+                    mkdir -p data/$network/$interact/mode-$mode/iter-$iter/$dir
 
                 done
-                for method in flac-pea flac-ppea spiec-easi cclasso
+                for method in flac-pea flac-spe flac-ppea flac-pspe count-mic flac-mic sparcc rebacca spiec-easi cclasso
                 do
-                    mkdir -p data/$network/$interact/ratio-$ratio/iter-$iter/pred/$method
+                    mkdir -p data/$network/$interact/mode-$mode/iter-$iter/pred/$method
                 done
             done
         done
