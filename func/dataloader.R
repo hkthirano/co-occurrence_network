@@ -32,21 +32,21 @@ dataloader_real_A_count <- function( params_i, iter ){
 dataloader_real_A_count_v2 <- function( params_i, iter ){
     network <- as.character(params_i[, "network"])
     interact <- as.character(params_i[, "interact"])
-    ratio <- as.character(params_i[, "ratio"])
+    mode <- as.character(params_i[, "mode"])
     file_name <- as.character(params_i[, "file.name"])
 
     # network_realの読み込み
-    network_real_file <- L("../../data/", network,"/",interact,"/ratio-",ratio,"/iter-",iter,"/real/",file_name)
+    network_real_file <- L("../../data/", network,"/",interact,"/mode-",mode,"/iter-",iter,"/real/",file_name)
     network_real = read.table(network_real_file)
     #print(L("読んだファイル : ", network_real_file))
     
     # Aの読み込み
-    A_file <- L("../../data/", network,"/",interact,"/ratio-",ratio,"/iter-",iter,"/A/",file_name)
+    A_file <- L("../../data/", network,"/",interact,"/mode-",mode,"/iter-",iter,"/A/",file_name)
     A = read.table(A_file)
     #print(L("読んだファイル : ", A_file))
 
     # countデータの読み込み
-    count_data_file <- L("../../data/", network,"/",interact,"/ratio-",ratio,"/iter-",iter,"/count/",file_name)
+    count_data_file <- L("../../data/", network,"/",interact,"/mode-",mode,"/iter-",iter,"/count/",file_name)
     count_data = read.table(count_data_file, header=T, row.names=1)
     #print(L("読んだファイル : ", count_data_file))
 
@@ -58,15 +58,16 @@ dataloader_real_A_count_v2 <- function( params_i, iter ){
 dataloader_real_pred <- function( params_i, iter ){
     network <- as.character(params_i[, "network"])
     interact <- as.character(params_i[, "interact"])
+    mode <- as.character(params_i[, "mode"])
     file_name <- as.character(params_i[, "file.name"])
 
     # network_realの読み込み
-    network_real_file <- L("../../data/", network,"/",interact,"/iter-",iter,"/real/",file_name)
+    network_real_file <- L("../../data/", network,"/",interact,"/mode-",mode,"/iter-",iter,"/real/",file_name)
     network_real = read.table(network_real_file)
     #print(L("読んだファイル : ", network_real_file))
 
     # network_predの読み込み
-    network_pred_file <- L("../../data/", network,"/",interact,"/iter-",iter,"/pred/sparcc/",file_name)
+    network_pred_file <- L("../../data/", network,"/",interact,"/mode-",mode,"/iter-",iter,"/pred/sparcc/",file_name)
     network_pred = read.table(network_pred_file)
     #print(L("読んだファイル : ", network_pred_file))
 

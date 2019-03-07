@@ -30,7 +30,7 @@ calc_mic <- function( params_i, iter ){
     id <- params_i[, "id"]
 
     # === count ===
-    tryCatch({
+    #tryCatch({
         # network_realとcountデータの読み込み
         obj <- dataloader_real_A_count_v2( params_i, iter )
 
@@ -42,33 +42,33 @@ calc_mic <- function( params_i, iter ){
         count_data <- obj[[3]]
 
         # micの計算
-        network_pred_count <- mine( t(count_data) )$MIC
+        #network_pred_count <- mine( t(count_data) )$MIC
 
         # 絶対値に
-        network_pred_count <- abs(network_pred_count)
+        #network_pred_count <- abs(network_pred_count)
         # 対角要素を０に
-        diag(network_pred_count) <- 0
+        #diag(network_pred_count) <- 0
 
         # only use elements in lower triangular matrix
-        pred_count <- network_pred_count[lower.tri(network_pred_count)]
+        #pred_count <- network_pred_count[lower.tri(network_pred_count)]
 
         # roc,prcの計算
-        roc_count <- roc(real, pred_count)$auc
-        prc_count <- pr.curve(pred_count[real == 1],pred_count[real == 0])$auc.integral
+        #roc_count <- roc(real, pred_count)$auc
+        #prc_count <- pr.curve(pred_count[real == 1],pred_count[real == 0])$auc.integral
 
         #iter毎のaucを保存
-        file_name_count <- L("out-res/iter-", iter, "/id-", id, "-count-mic.txt")
-        cat(roc_count, prc_count, "\n", file=file_name_count)
+        #file_name_count <- L("out-res/iter-", iter, "/id-", id, "-count-mic.txt")
+        #cat(roc_count, prc_count, "\n", file=file_name_count)
          
-        cat("\n\n[count] id -", id, "は計算できた！\n\n")
-    },
+        #cat("\n\n[count] id -", id, "は計算できた！\n\n")
+    #},
     # 計算できなかった時
-    error = function(e) {
-        cat("\n\n")
-        print(params_i)
-        cat("\n\n")
-        cat("\n\n[count] id -", id, "は計算できなかった！\n\n")
-    }) 
+    #error = function(e) {
+    #    cat("\n\n")
+    #    print(params_i)
+    #    cat("\n\n")
+    #    cat("\n\n[count] id -", id, "は計算できなかった！\n\n")
+    #}) 
 
 
     # === flac ===

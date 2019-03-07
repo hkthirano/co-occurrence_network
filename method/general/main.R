@@ -114,14 +114,14 @@ calc_general <- function( params_i, iter ){
         })
 
         # @@@@@@@@@@ 6 flac-spe @@@@@@@@@@
-        #tryCatch({
-        #    network_pred <- abs(cor(t(flac_data),m="s"))
-        #    calc_cat_auc(network_pred, real, id, iter, "flac-spe")
-        #},
-        #error = function(e) {
-        #    cat("\n\nid -", id, " | 6 flac-spe は計算できなかった！\n\n")
-        #    err <- 1
-        #})
+        tryCatch({
+            network_pred <- abs(cor(t(flac_data),m="s"))
+            calc_cat_auc(network_pred, real, id, iter, "flac-spe")
+        },
+        error = function(e) {
+            cat("\n\nid -", id, " | 6 flac-spe は計算できなかった！\n\n")
+            err <- 1
+        })
 
         # @@@@@@@@@@ 7 flac-ppea @@@@@@@@@@
         tryCatch({
@@ -133,14 +133,14 @@ calc_general <- function( params_i, iter ){
         })
 
         # @@@@@@@@@@ 8 flac-pspe @@@@@@@@@@
-        #tryCatch({
-        #    network_pred <- abs(pcor(t(flac_data),m="s")$estimate)
-        #    calc_cat_auc(network_pred, real, id, iter, "flac-pspe")
-        #},
-        #error = function(e) {
-        #    cat("\n\nid -", id, " | 8 flac-pspe は計算できなかった！\n\n")
-        #    err <- 1
-        #})
+        tryCatch({
+            network_pred <- abs(pcor(t(flac_data),m="s")$estimate)
+            calc_cat_auc(network_pred, real, id, iter, "flac-pspe")
+        },
+        error = function(e) {
+            cat("\n\nid -", id, " | 8 flac-pspe は計算できなかった！\n\n")
+            err <- 1
+        })
 
         # ８手法のどれかでエラーが起きたとき
         if (err == 1){
