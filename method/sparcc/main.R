@@ -33,12 +33,13 @@ calc_sparcc <- function( params_i, iter ){
     id <- params_i[, "id"]
     network <- as.character(params_i[, "network"])
     interact <- as.character(params_i[, "interact"])
+    mode <- as.character(params_i[, "mode"])
     sampling <- params_i[, "sampling"]
     file_name <- params_i[, "file.name"]
 
     # sparccを計算するコマンドを作成
-    arg_2 <- L("../../data/", network, "/", interact, "/iter-", iter, "/count/", file_name)
-    arg_3 <- L("--cor_file=../../data/", network, "/", interact, "/iter-", iter, "/pred/sparcc/", file_name)
+    arg_2 <- L("../../data/", network, "/", interact, "/mode-", mode, "/iter-", iter, "/count/", file_name)
+    arg_3 <- L("--cor_file=../../data/", network, "/", interact, "/mode-", mode, "/iter-", iter, "/pred/sparcc/", file_name)
     cmd = L(python, " ", arg_1, " ", arg_2, " ", arg_3)
 
     tryCatch({
